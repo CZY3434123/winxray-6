@@ -91,5 +91,18 @@ namespace style{
 			default={bottom=1;color=0xFF808080};
 			disabled={bottom=1;color=0xFFCCCCCC}
 		}
+	};
+	trackbar = {
+		background={
+			default=0xFF23ABD9
+		};
+		foreground={
+			default=0xFFFF771C;
+			hover=0xFFFF6600
+		};
+		color={
+			default=0xFFFF5C00;
+			hover=0xFFFF6600
+		}
 	}
 }

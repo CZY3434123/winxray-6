@@ -1,30 +1,34 @@
 import fonts.fontAwesome;
 import win.ui;
 /*DSG{{*/
-var winform = win.form(text="aardio form";right=938;bottom=638;bgcolor=16777215)
+var winform = win.form(text="aardio form";right=938;bottom=604;bgcolor=16777215)
 winform.add(
-btnOpenFirewall={cls="plus";text="设置防火墙";left=511;top=448;right=641;bottom=478;align="left";db=1;dl=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=12}};iconText='\uF09C';notify=1;textPadding={left=30};z=7};
-btnUpdate={cls="plus";text="保 存";left=516;top=569;right=619;bottom=605;align="left";bgcolor=11580047;db=1;dl=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=22}};iconText='\uF0C7';notify=1;textPadding={left=40};z=5};
-chkEnableGitConfigGithub={cls="plus";text="设置 git 客户端启用 github.com 代理提速（支持https、ssh协议）";left=302;top=487;right=818;bottom=518;align="left";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF0C8';notify=1;textPadding={left=19};z=13};
-chkLan={cls="plus";text="允许来自局域网的连接";left=302;top=447;right=509;bottom=478;align="left";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF0C8';notify=1;textPadding={left=19};z=1};
-chkSystemStart={cls="plus";text="允许开机启动 winXray";left=302;top=527;right=818;bottom=558;align="left";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF0C8';notify=1;textPadding={left=19};z=17};
-editHttpPort={cls="plus";left=304;top=198;right=384;bottom=222;align="left";bgcolor=16777215;border={bottom=1;color=-8355712};db=1;dl=1;editable="edit";font=LOGFONT(h=-16);textPadding={bottom=1};z=14};
-editLanPacUrl={cls="plus";left=306;top=393;right=725;bottom=417;align="left";bgcolor=16777215;border={bottom=1;color=-8355712};db=1;dl=1;editable="edit";font=LOGFONT(h=-16);textPadding={bottom=1};z=11};
-editPacPort={cls="plus";left=304;top=292;right=384;bottom=316;align="left";bgcolor=16777215;border={bottom=1;color=-8355712};db=1;dl=1;editable="edit";font=LOGFONT(h=-16);textPadding={bottom=1};z=2};
-editPacUrl={cls="plus";left=304;top=344;right=723;bottom=368;align="left";bgcolor=16777215;border={bottom=1;color=-8355712};db=1;dl=1;editable="edit";font=LOGFONT(h=-16);textPadding={bottom=1};z=8};
-editSocksPort={cls="plus";left=304;top=152;right=384;bottom=176;align="left";bgcolor=16777215;border={bottom=1;color=-8355712};db=1;dl=1;editable="edit";font=LOGFONT(h=-16);textPadding={bottom=1};z=3};
-lbTestInterval={cls="static";text="15秒";left=590;top=101;right=788;bottom=127;bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=20};
-lnkVersion={cls="plus";text="正在检查新版本";left=19;top=607;right=380;bottom=638;align="left";color=8388608;db=1;dl=1;font=LOGFONT(h=-13);iconColor=2960685;iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF021';notify=1;paddingLeft=20;z=10};
-radioHttpGlobal={cls="plus";text="全局/PAC 默认使用HTTP代理";left=246;top=243;right=491;bottom=274;align="left";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF111 ';notify=1;textPadding={left=19};z=21};
-radioSocksGlobal={cls="plus";text="全局/PAC 默认使用SOCKS代理";left=491;top=243;right=750;bottom=274;align="left";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF111 ';notify=1;textPadding={left=19};z=22};
-static={cls="static";text="SOCKS 代理服务端口：";left=94;top=158;right=292;bottom=184;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=4};
-static2={cls="static";text="PAC 端口：";left=162;top=297;right=292;bottom=323;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=6};
-static3={cls="static";text="本机 PAC 地址：";left=135;top=349;right=293;bottom=375;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=9};
-static4={cls="static";text="局域网 PAC 地址：";left=137;top=398;right=295;bottom=424;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=12};
-static5={cls="static";text="HTTP/HTTPS 代理服务端口：";left=34;top=204;right=292;bottom=230;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=15};
-static6={cls="static";text="支持 SOCKS4、SOCKS4A、SOCKS5";left=392;top=158;right=679;bottom=184;bgcolor=16777215;color=5921370;db=1;dl=1;font=LOGFONT(h=-13);transparent=1;z=16};
-static7={cls="static";text="检测服务器异常间隔时间：";left=47;top=101;right=292;bottom=127;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=19};
-tbTestInterval={cls="plus";left=304;top=105;right=585;bottom=117;bgcolor=-2512093;border={radius=-1};color=23807;db=1;dl=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=18}
+btnOpenFirewall={cls="plus";text="设置防火墙";left=511;top=424;right=641;bottom=454;align="left";db=1;dl=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=12}};iconText='\uF09C';notify=1;textPadding={left=30};z=7};
+btnUpdate={cls="plus";text="保 存";left=516;top=545;right=619;bottom=581;align="left";bgcolor=11580047;db=1;dl=1;font=LOGFONT(h=-13);iconStyle={align="left";font=LOGFONT(h=-13;name='FontAwesome');padding={left=22}};iconText='\uF0C7';notify=1;textPadding={left=40};z=5};
+chkEnableGitConfigGithub={cls="plus";text="设置 git 客户端启用 github.com 代理提速（支持https、ssh协议）";left=302;top=463;right=818;bottom=494;align="left";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF0C8';notify=1;textPadding={left=19};z=13};
+chkLan={cls="plus";text="允许来自局域网的连接";left=302;top=423;right=509;bottom=454;align="left";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF0C8';notify=1;textPadding={left=19};z=1};
+chkSystemStart={cls="plus";text="允许开机启动 winXray";left=302;top=503;right=818;bottom=534;align="left";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF0C8';notify=1;textPadding={left=19};z=17};
+editHttpPort={cls="plus";left=304;top=163;right=384;bottom=187;align="left";bgcolor=16777215;border={bottom=1;color=-8355712};db=1;dl=1;editable="edit";font=LOGFONT(h=-16);textPadding={bottom=1};z=14};
+editLanPacUrl={cls="plus";left=306;top=364;right=725;bottom=388;align="left";bgcolor=16777215;border={bottom=1;color=-8355712};db=1;dl=1;editable="edit";font=LOGFONT(h=-16);textPadding={bottom=1};z=11};
+editPacPort={cls="plus";left=304;top=272;right=384;bottom=296;align="left";bgcolor=16777215;border={bottom=1;color=-8355712};db=1;dl=1;editable="edit";font=LOGFONT(h=-16);textPadding={bottom=1};z=2};
+editPacUrl={cls="plus";left=304;top=319;right=723;bottom=343;align="left";bgcolor=16777215;border={bottom=1;color=-8355712};db=1;dl=1;editable="edit";font=LOGFONT(h=-16);textPadding={bottom=1};z=8};
+editSocksPort={cls="plus";left=304;top=124;right=384;bottom=148;align="left";bgcolor=16777215;border={bottom=1;color=-8355712};db=1;dl=1;editable="edit";font=LOGFONT(h=-16);textPadding={bottom=1};z=3};
+lbMaxTestServers={cls="static";text="100";left=590;top=93;right=926;bottom=119;bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-13);transparent=1;z=25};
+lbTestInterval={cls="static";text="15秒";left=590;top=56;right=788;bottom=82;bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-13);transparent=1;z=20};
+lnkVersion={cls="plus";text="正在检查新版本";left=19;top=575;right=380;bottom=606;align="left";color=8388608;db=1;dl=1;font=LOGFONT(h=-13);iconColor=2960685;iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF021';notify=1;paddingLeft=20;z=10};
+radioHttpGlobal={cls="plus";text="全局/PAC 默认使用HTTP代理";left=246;top=206;right=491;bottom=237;align="left";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF111 ';notify=1;textPadding={left=19};z=21};
+radioSocksGlobal={cls="plus";text="全局/PAC 默认使用SOCKS代理";left=491;top=206;right=750;bottom=237;align="left";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);iconStyle={align="left";font=LOGFONT(h=-16;name='FontAwesome')};iconText='\uF111 ';notify=1;textPadding={left=19};z=22};
+static={cls="static";text="SOCKS 代理服务端口：";left=94;top=128;right=292;bottom=154;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=4};
+static2={cls="static";text="PAC 端口：";left=162;top=277;right=292;bottom=303;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=6};
+static3={cls="static";text="本机 PAC 地址：";left=134;top=324;right=292;bottom=350;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=9};
+static4={cls="static";text="局域网 PAC 地址：";left=134;top=370;right=292;bottom=396;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=12};
+static5={cls="static";text="HTTP/HTTPS 代理服务端口：";left=34;top=167;right=292;bottom=193;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=15};
+static6={cls="static";text="支持 SOCKS4、SOCKS4A、SOCKS5";left=392;top=128;right=679;bottom=154;bgcolor=16777215;color=5921370;db=1;dl=1;font=LOGFONT(h=-13);transparent=1;z=16};
+static7={cls="static";text="检测服务器异常间隔时间：";left=47;top=50;right=292;bottom=76;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=19};
+static8={cls="static";text="允许同时测速的服务器数目：";left=47;top=89;right=292;bottom=115;align="right";bgcolor=16777215;db=1;dl=1;font=LOGFONT(h=-16);transparent=1;z=24};
+static9={cls="static";text="PAC 模式默认启用 SOCKS5 或 HTTP 代理，都支持 DNS 保护。全局代理设为默认 HTTP 代理时支持 DNS保 护。";left=250;top=247;right=891;bottom=273;color=12632256;db=1;dl=1;font=LOGFONT(h=-11);transparent=1;z=26};
+tbMaxTestServers={cls="plus";left=304;top=95;right=585;bottom=107;bgcolor=-2512093;border={radius=-1};color=23807;db=1;dl=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=23};
+tbTestInterval={cls="plus";left=304;top=57;right=585;bottom=69;bgcolor=-2512093;border={radius=-1};color=23807;db=1;dl=1;foreRight=13;forecolor=-14911489;notify=1;paddingBottom=5;paddingTop=5;z=18}
 )
 /*}}*/
 
@@ -57,14 +61,14 @@ onPacUpdated = function(){
 }
 
 subscribe("pacServer.restarted",function(pacPort){
-    onPacUpdated()
+	onPacUpdated()
 }) 
 
 subscribe("sysProxy.modeChanged",function(mode){
-    if(mode==="mode"){
+	if(mode==="mode"){
 		winform.editPacUrl.text = xray.pacServer.getUrl();
 		winform.editLanPacUrl.text = xray.pacServer.getUrl(true);	
-    }
+	}
 }) 
 
 import xray.core;
@@ -77,11 +81,11 @@ var onInboundsUpdated = function(){
 }
 
 subscribe("config.core.changed",function(){
-    onInboundsUpdated();
+	onInboundsUpdated();
 })  
 
 subscribe("xrayCore.restarted",function(socksProxyPort,httpProxPort){
-    onInboundsUpdated();
+	onInboundsUpdated();
 })  
 
 import win.reg;
@@ -123,7 +127,7 @@ winform.btnUpdate.oncommand = function(id,event){
 	} 
 	client.close(); 
 	
-  
+	
 	if(winform.chkEnableGitConfigGithub.checked!=config.proxy.enableGitConfigGithub){
 		config.proxy.enableGitConfigGithub = winform.chkEnableGitConfigGithub.checked;
 			
@@ -159,10 +163,10 @@ winform.btnUpdate.oncommand = function(id,event){
 		config.core.default.inbounds[2]["listen"]= listen;
 		restartCore = true;
 	}			 
-    
-    config.core.save();
-    publish("config.inbounds.changed");
-    if(restartCore) {
+	
+	config.core.save();
+	publish("config.inbounds.changed");
+	if(restartCore) {
 		publish("uiCommand.restartXrayCore");    
 	}
 	
@@ -173,20 +177,20 @@ winform.btnUpdate.oncommand = function(id,event){
 	
 	config.proxy.save();
 	sysProxy.reset(true);
-    
-    import win.reg;
-    var reg = win.reg("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run\");
-    if(!_STUDIO_INVOKED){
-    	if(winform.chkSystemStart.checked){
-    		reg.setSzValue("winXray",`"`+io._exepath+`" /tray`);
-    	}
-    	else {
-    		reg.delValue("winXray");
-    	}           	
-    } 
-    reg.close();
-    
-    winform.btnUpdate.disabledText = null;
+	
+	import win.reg;
+	var reg = win.reg("HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run\");
+	if(!_STUDIO_INVOKED){
+		if(winform.chkSystemStart.checked){
+			reg.setSzValue("winXray",`"`+io._exepath+`" /tray`);
+		}
+		else {
+			reg.delValue("winXray");
+		}           	
+	} 
+	reg.close();
+	
+	winform.btnUpdate.disabledText = null;
 	winform.msgOk("配置已更新",1200);
 }
 
@@ -196,7 +200,7 @@ winform.editLanPacUrl.editBox.readonly = true;
 import win.clip;
 import wsock.tcp.client;
 winform.editSocksPort.editBox.enablePopMenu(function(){
-    var lanIp = wsock.tcp.client.getLocalIp("www.baidu.com");
+	var lanIp = wsock.tcp.client.getLocalIp("www.baidu.com");
 	return {
 			{ "复制端口" + winform.editSocksPort.text;
 				function(id){ 
@@ -217,7 +221,7 @@ winform.editSocksPort.editBox.enablePopMenu(function(){
 } )
 
 winform.editHttpPort.editBox.enablePopMenu(function(){
-    var lanIp = wsock.tcp.client.getLocalIp("www.baidu.com");
+	var lanIp = wsock.tcp.client.getLocalIp("www.baidu.com");
 	return {
 			{ "复制端口" + winform.editHttpPort.text;
 				function(id){ 
@@ -246,24 +250,30 @@ winform.chkLan.oncommand = function(id,event){
 }
 
 winform.tbTestInterval.setTrackbarRange(1,30);
-winform.tbTestInterval.skin({
-	background={
-		default=0xFF23ABD9
-	};
-	foreground={
-		default=0xFFFF771C;
-		hover=0xFFFF6600
-	};
-	color={
-		default=0xFFFF5C00;
-		hover=0xFFFF6600
-	}
-})
+winform.tbTestInterval.skin(style.trackbar);
 winform.tbTestInterval.progressPos = config.proxy.testInterval;
 winform.lbTestInterval.text = config.proxy.testInterval+"秒";
 winform.tbTestInterval.onPosChanged = function( pos,thumbTrack ){
 	winform.lbTestInterval.text = pos+"秒";
 	config.proxy.testInterval = pos;
+	config.proxy.save();
+}
+
+winform.tbMaxTestServers.setTrackbarRange(50,1000);
+winform.tbMaxTestServers.skin(style.trackbar);
+winform.tbMaxTestServers.progressPos = config.proxy.maxTestServers;
+winform.lbMaxTestServers.text = config.proxy.maxTestServers+"个服务器";
+winform.tbMaxTestServers.onPosChanged = function( pos,thumbTrack ){
+	if(pos>300){
+		winform.lbMaxTestServers.color = 0xFF;
+		winform.lbMaxTestServers.text = pos+"个服务器( 数值太大可能导致卡顿 )";
+	}
+	else {
+		winform.lbMaxTestServers.color = 0;
+		winform.lbMaxTestServers.text = pos+"个服务器";
+	}
+	
+	config.proxy.maxTestServers = pos;
 	config.proxy.save();
 }
 

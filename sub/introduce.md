@@ -4,10 +4,14 @@
 
 winXray  最新版支持直接使用 github 网址作为订阅链接。例如，我们在浏览器里访问 github项目文件的地址是这样的： [https://github.com/winXray/winXray/blob/master/sub/sample.json](./sample.json) 我们直接复制前面的链接，然后在 winXray 中点击 **「批量导入链接」** 就可以导入里面的服务器配置了。
 
-当然我们也可以在github的页面右键点击  **「raw」**，复制链接 [https://github.com/winXray/winXray/raw/master/sub/sample.json](./sample.json) 然后再导入 winXray ， winXray 都能兼容。实际上下载的raw链接是跳转到 raw.githubusercontent.com，而国内默认是打不开这个地址的（可以使用 winXray 自带的 github 优化工具修复这个问题 ）。
+winXray可以兼容以下格式的github文件地址( 支持省略域或并以斜杆开头的地址 ）：  
+https://github.com/winXray/winXray/blob/master/sub/sample.json  
+[/winXray/blob/master/sub/sample.json](./sample.json)  
+https://github.com/winXray/winXray/raw/master/sub/sample.json  
+[/winXray/winXray/raw/master/sub/sample.json](./sample.json)  
+https://raw.githubusercontent.com/winXray/winXray/master/sub/sample.json  
 
-所以不建议大家使用 raw.githubusercontent.com 开头的链接，
-直接使用[https://github.com/winXray/winXray/raw/master/sub/sample.json](./sample.json) 这样的地址，winXray 可以机智地调用 github 的API 顺利地把目标文件下载下来。 
+即使在国内打不开 githubusercontent.com，winXray 仍然可以机智地调用 github 的API 顺利地把目标文件下载下来。 
 
 winXray 的订阅链接可以返回所有 winXray 能兼容的服务器配置，例如：  
 1、直接返回一行或多行分享链接，支持vmess,vless,ss,trojan,trojan-go 这一堆的各种通用分享格式，每行一个有效链接，无效的行 winXray 会自动忽略。  

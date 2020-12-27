@@ -6,11 +6,11 @@ namespace config {
 	__appName = "winXray"; 
 	__loadDefaultOutbounds = function(){
 		import xray.outbounds;
-	    var serverData =  ..string.load("/xray-core/winXray-default-servers.json") 
-	    	: $"/xray-core/winXray-default-servers.json"
-    	
-    	proxy.outbounds = ..xray.outbounds.importFromString(..string.removeBom(serverData));
-    	..publish("outbounds.updateConfigJson",)
+		var serverData =  ..string.load("/xray-core/winXray-default-servers.json") 
+			: $"/xray-core/winXray-default-servers.json"
+		
+		proxy.outbounds = ..xray.outbounds.importFromString(..string.removeBom(serverData));
+		..publish("outbounds.updateConfigJson",)
 	}
 	
 	if(!proxy.outbounds){
@@ -32,8 +32,16 @@ if(config.proxy.test === null){
 	config.proxy.test = true;
 }
 
+if(config.proxy.autoRefreshSubscription === null){
+	config.proxy.autoRefreshSubscription = true;
+}
+
 if(!config.proxy.testInterval){
 	config.proxy.testInterval = 15;
+}
+
+if(!config.proxy.maxTestServers){
+	config.proxy.maxTestServers = 100;
 }
 
 if(!config.proxy.subscribeUrls){

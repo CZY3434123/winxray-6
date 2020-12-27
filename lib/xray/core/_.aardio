@@ -8,6 +8,11 @@ namespace xray.core;
 socksProxyPort = null;
 httpProxPort = null;
 
+getHttpProxyAddress = function(){
+    if(!(socksProxyPort&&httpProxPort)){ return null; }
+	return ..config.proxy.useHttpGlobal ? ("127.0.0.1:" + httpProxPort ): ("SOCKS=127.0.0.1:"+socksProxyPort)  
+} 
+
 isInboundPortChanged = function(){
 	var inbounds = ..config.core.default.inbounds;
 	if(! (..table.isArray(inbounds) && inbounds[1] && inbounds[2]) ){
@@ -60,7 +65,7 @@ restart = function(editor,outbound){
 	..sysProxy.reset(false);	
 	
 	var err;
-	prcsXray,err = ..process.popen(corePath,"run","-c=config.json" );
+	prcsXray,err = ..process.popen(corePath,"-c=config.json" );
 	if(!prcsXray){
 		..publish("uiCommand.print",err:"启动 Xray Core 时遇到未知错误!");
 		
@@ -79,7 +84,8 @@ restart = function(editor,outbound){
 		
 		return;
 	}
-	prcsXray.assignToJobObject(process.job.limitKill);	
+	prcsXray.assignToJobObject(process.job.limitKill);
+	prcsXray.codepage = 65001;	
 	prcsXray.logResponse(editor);
 
 	inbounds[1].port = socksProxyPort;

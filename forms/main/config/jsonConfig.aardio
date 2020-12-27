@@ -175,17 +175,27 @@ winform.editOutbounds.enablePopMenu(function(){
 					if(#outbounds){ 
 						var json = strEditBounds;
 						if( (!#json) || ..string.match(json,"%\[\]")){
-							var cfg,err = ..table.array();
+							var cfgOutbounds,err = ..table.array();
 							if(#json){
-								cfg,err= web.json.tryParse(strEditBounds);
-								if(!cfg){
+								cfgOutbounds,err= web.json.tryParse(strEditBounds);
+								if(!cfgOutbounds){
 									winform.editOutbounds.showErrorTip(,string.concat("当前配置存在JSON语法错误 ",err));
 									return;
 								}	
 							} 
 							
-							..table.append(cfg,outbounds);
-							winform.editOutbounds.text = ..web.json.stringifyArray(cfg,true,false,true);
+							var subscribeUrl = outbounds[1].subscribeUrl;
+							if(subscribeUrl){
+								for(i=#cfgOutbounds;1;-1){
+									var outbound = cfgOutbounds[i] 
+									if(outbound.subscribeUrl==url){
+										..table.remove(	cfgOutbounds,i );
+									}
+								}
+							}
+							
+							..table.append(cfgOutbounds,outbounds);
+							winform.editOutbounds.text = ..web.json.stringifyArray(cfgOutbounds,true,false,true);
 						}
 						else {
 							var str = xray.outbounds.exportSharedLinks(outbounds);
@@ -203,13 +213,13 @@ winform.editOutbounds.enablePopMenu(function(){
 						return; 
 					}
 		
-					winform.msgFrown('未导入服务器！ \r\n请先复制一个或多个以下格式服务器分享链接：\r\n\r\nvmess:// 链接\r\nvless:// 链接\r\nss:// 链接\r\ntrojan:// 链接\r\ntrojan-go:// 链接\r\nhttp:// 或 https:// 通用订阅源！\r\n\r\n订阅源可直接返回winXray格式的配置JSON。\n订阅源地址可以直接指定github项目网址（兼容raw,blob格式）。')
+					winform.msgFrown('未导入服务器！\r\n请先复制以下格式文本（自动清除其中的无效内容）：\r\n\r\n1、一行或多行（忽略无效行）分享链接或服务器JSON配置。\r\n支持 vmess://，vless://，ss://，trojan://， trojan-go:// 等通用分享链接。\r\n\r\n2、包含多个服务器配置的JSON数组。\r\n\r\n3、单个 http:// 或 https:// 开头的通用订阅源地址。\r\n订阅源地址支持直接使用github项目文件地址（网址含raw或blob目录名）。\r\n订阅源可以BASE64编码或明文返回以上1、2条规定的配置或分享链接。')
 				} 
 			};  
 		}
 		
 		if( (!#strEditBounds) || ..string.match(strEditBounds,"%\[\]")){
-			menu[3] = { "更新订阅源";
+			menu[3] = { "更新当前配置内订阅源";
 				function(id){ 
 					var cfg,err = ..table.array();
 					
@@ -221,7 +231,7 @@ winform.editOutbounds.enablePopMenu(function(){
 							return;
 						}
 					}
-					 
+						
 					var subscribeUrls = {}
 					for(i=#cfg;1;-1){
 						var outbound = cfg[i] 
@@ -241,7 +251,7 @@ winform.editOutbounds.enablePopMenu(function(){
 							return;
 						} 
 					}
-					 
+						
 					var count = 0;
 					for(url,v in subscribeUrls){ 
 						var outbounds = xray.outbounds.importFromString(url);
@@ -272,13 +282,23 @@ winform.editOutbounds.enablePopMenu(function(){
 			menu[4] = {}	
 			menu[5] = { "转换为 vmess、vless、trojan、trojan-go、ss 分享链接";
 				function(id){ 
-					var cfg,err = web.json.tryParse(strEditBounds);
-					if(!cfg){
+					var cfgOutbouds,err = web.json.tryParse(strEditBounds);
+					if(!cfgOutbouds){
 						winform.editOutbounds.showErrorTip(,string.concat("JSON语法错误 ",err));
 						return;
 					}
-		
-					var str = xray.outbounds.exportSharedLinks(cfg);
+					
+					for(i,ob in cfgOutbouds){
+						if(ob.subscribeUrl){
+							if(!winform.msgAsk('当前配置包含订阅源,\n转换为分享链接所有服务器与订阅源将解除关联,\n按确定继续操作，按取消中止。')){
+								return;
+							}
+							
+							break;
+						} 
+					}
+					
+					var str = xray.outbounds.exportSharedLinks(cfgOutbouds);
 					if(str){ 
 						winform.editOutbounds.text = str;
 						winform.editOutbounds.modified = true;
@@ -479,6 +499,16 @@ winform.editOutbounds.enablePopMenu(function(){
 						winform.editOutbounds.selText = '"path":"/",'
 					} 
 				};
+				{ "HTTP请求方法:httpMethod";
+					function(id){
+						winform.editOutbounds.selText = '"httpMethod":"GET",'
+					} 
+				};
+				{ "HTTP请求头:headers";
+					function(id){
+						winform.editOutbounds.selText = '"headers":{"method":"GET"},'
+					} 
+				};
 				{ "绑定的订阅网址:subscribeUrl";
 					function(id){
 						winform.editOutbounds.selText = '"subscribeUrl":"https://",'
@@ -551,10 +581,12 @@ var editOutboundsTip = {
 	aid = {"额外ID(alterId)";"数值,仅用于VMESS协议，与服务器一致即可"};
 	network = {"传输协议(network)";"可选值为tcp,ws等"};
 	net = {"传输协议(network)";"可选值为tcp,ws等"};
-	type = {"伪装类型";"可选值为none,http等"}; 
+	type = {"伪装类型";"默认的可选值为none,http等,kcp或quic此字段表示header.type，可选值为 none,srtp,utp,wechat-video,dtls,wireguard"}; 
 	ps = {"备注";"备注"}; 
 	tls = {"是否启用TLS";"可选值为tls,xtls或空值,vless协议省略时默认值为tls"}; 
 	path = {"请求路径";"用于ws,http等协议指定请求路径"}; 
+	httpMethod = {"HTTP请求方法";"用于http协议指定请求方法"}; 
+	headers = {"HTTP请求头";"用于ws,http等协议指定请求头"}; 
 	id = {"密码";"服务器密码"}; 
 	host = {"主机名";"用于指定http,ws等协议请求头中的主机名"}; 
 	protocol = {"协议";"可选值为 vmess,vless,shadowsocks,trojan,trojan-go 之一"}; 
@@ -576,7 +608,7 @@ winform.editOutbounds.wndproc = function(hwnd,message,wParam,lParam){
 		var line = winform.editOutbounds.lineText();
 		var n,v = string.match(line,`^\s*\"(\w+)\"\s*\:\s*(%"")[\,\s]*$`); 
 		if( !n ) n,v = string.match(line,`^\s*\"(\w+)\"\s*\:\s*(\d+)[\,\s]*$`);
-		
+		if( !n ) n,v = string.match(line,`^\s*\"(\w+)\"\s*\:\s*\{`);
 		if(editOutboundsTip[n]){
 			winform.editOutbounds.showInfoTip(editOutboundsTip[n][1],editOutboundsTip[n][2])
 		}
